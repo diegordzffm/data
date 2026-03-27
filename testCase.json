@@ -1,0 +1,421 @@
+{
+  "name" : "EBA_UK_3.0_DPM",
+  "purgeClustersBeforeStart" : false,
+  "processes" : [ {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_1141216961745356008",
+        "task" : "mpeEditTablesImport",
+        "dependencies" : null,
+        "repdate" : "30.09.2022",
+        "cluster" : "PROD",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 01:17:23",
+        "endDate" : "20.10.2023 01:19:14"
+      },
+      "parameters" : {
+        "XnoAuditModifications" : "1",
+        "f001" : "UK_BANK",
+        "file" : "Triodos_config_international.zip",
+        "lastperiod" : "false"
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : true,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "task" : "mpeBase360",
+        "dependencies" : null,
+        "id" : "Job_409238667597155647",
+        "f001" : "UK_BANK",
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "startDate" : "20.10.2023 01:22:30",
+        "endDate" : "20.10.2023 01:25:30",
+        "description" : "Import data"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XExecLoader" : "1",
+        "Xcluster" : "TRIODOS_UK",
+        "XexpectedDataFacetSelection" : "00",
+        "Xx1.modelVersionId" : "latest",
+        "f001" : "UK_BANK",
+        "file" : "Triodos_test_data.zip",
+        "partition" : null,
+        "startdate" : null
+      }
+    }
+  },  {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_7307933436012334408",
+        "task" : "mpeOwnFundsCalc",
+        "dependencies" : [ "Job_6651897315520894040" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 03:10:55",
+        "endDate" : "20.10.2023 03:38:31"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XDPM_VERSION" : "v3_0",
+        "XEXEC_GAAP" : "0",
+        "XPROCESS_ASSET_SELECTION" : "4",
+        "Xcluster" : "TRIODOS_UK",
+        "XisBaseActivated" : "1",
+        "XisCorepCommonActivated" : "1",
+        "XisMKRActivated" : "1",
+        "XisOWFAllocActivated" : "1",
+        "XisSecDetailsAllocActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "f001" : "UK_BANK",
+        "lastperiod" : "false"
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_6290488562313614875",
+        "task" : "mpeFinRepCalc",
+        "dependencies" : [ "Job_7307933436012334408" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 03:38:31",
+        "endDate" : "20.10.2023 03:40:29"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XEXEC_GAAP_IFRS" : "1",
+        "Xcluster" : "TRIODOS_UK",
+        "XisFinRepConsistencyCheckActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "XvisibilityContext.country" : "DE",
+        "f001" : "UK_BANK",
+        "file" : null,
+        "partition" : null,
+        "startdate" : null
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_6653483981771202718",
+        "task" : "mpeFinRepCalc",
+        "dependencies" : [ "Job_6290488562313614875" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 03:40:29",
+        "endDate" : "20.10.2023 03:56:00"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XEXEC_GAAP_nGAAP" : "1",
+        "Xcluster" : "TRIODOS_UK",
+        "XisBaseActivated" : "0",
+        "XisFinRepAllocationActivated" : "1",
+        "XisFinRepCalcActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "XvisibilityContext.country" : "DE",
+        "f001" : "UK_BANK",
+        "lastperiod" : "false"
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_3961587636381784444",
+        "task" : "mpeLRCalc",
+        "dependencies" : [ "Job_8889845804619049019" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 04:02:20",
+        "endDate" : "20.10.2023 04:06:50"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XEXEC_GAAP_nGAAP" : "1",
+        "Xcluster" : "TRIODOS_UK",
+        "XisBaseActivated" : "0",
+        "XisCorepCommonActivated" : "0",
+        "XisLrAllocationActivated" : "1",
+        "XisLrCalcActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "XvisibilityContext.country" : "DE",
+        "f001" : "UK_BANK",
+        "lastperiod" : "false"
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_3683904518753391195",
+        "task" : "mpeLargeExposureCalc",
+        "dependencies" : [ "Job_2214846294876106967" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 04:30:50",
+        "endDate" : "20.10.2023 04:37:47"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XDPM_VERSION" : "v3_0",
+        "XEXEC_GAAP_nGAAP" : "1",
+        "Xcluster" : "TRIODOS_UK",
+        "XisDELoanCommonActivated" : "1",
+        "XisLEAmountsAllocActivated" : "1",
+        "XisLECalcActivated" : "1",
+        "XisLEFinalActivated" : "1",
+        "XisLERelevanceActivated" : "1",
+        "XisPartnerConsolidationActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "XvisibilityContext.EXECBULIABILITY" : "1",
+        "XvisibilityContext.EXECCLALIABILITY" : "1",
+        "XvisibilityContext.country" : "DE",
+        "f001" : "UK_BANK",
+        "lastperiod" : "false"
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_25305066401995713",
+        "task" : "mpeLiquidityCalc",
+        "dependencies" : [ "Job_1478455322205524388" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 04:43:00",
+        "endDate" : "20.10.2023 04:55:36"
+      },
+      "parameters" : {
+        "XCALCCOLLATERAL" : "0",
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XDAYS" : "0",
+        "XDEBUG_EXPORTTYPE" : "xlsx",
+        "XDEBUG_SACCR" : "0",
+        "XDPM_VERSION" : "v3_0",
+        "XEXEC_GAAP_nGAAP" : "1",
+        "XPROCESS_ASSET_SELECTION" : "4",
+        "XSSMLEEVOCALC" : "1",
+        "XSSMLEMLCALC" : "1",
+        "XUSE_P011" : "0",
+        "Xcluster" : "TRIODOS_UK",
+        "Xdescription" : "",
+        "XisAEAllocActivated" : "1",
+        "XisAECalcActivated" : "1",
+        "XisALMMAllocActivated" : "1",
+        "XisALMMRollOverMonthCalcActivated" : "1",
+        "XisALMMTop10CalcActivated" : "1",
+        "XisBaseActivated" : "0",
+        "XisCorepCommonActivated" : "0",
+        "XisLCRAllocActivated" : "1",
+        "XisLIQCommonActivated" : "1",
+        "XisLiqCalcActivated" : "1",
+        "XisNSFRAllocActivated" : "1",
+        "XpersistCashflowCalc" : "1",
+        "XUKPRA110CALC" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "XvisibilityContext.actvtDerivativeProtocol" : "1",
+        "XvisibilityContext.country" : "DE",
+        "f001" : "UK_BANK",
+        "lastperiod" : "false"
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : true,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "task" : "mpeUKCalc",
+        "dependencies" : [ "Job_409238667597155647" ],
+        "id" : "Job_556110540774965096",
+        "f001" : "UK_BANK",
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "startDate" : "20.10.2023 04:56:48",
+        "endDate" : "20.10.2023 04:58:05",
+        "description" : "Calculate BOE, FSA, PRA108"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "Xcluster" : "TRIODOS_UK",
+        "XisBaseActivated" : "0",
+        "XisUKBOEAllocActivated" : "1",
+        "XisUKBOECalcActivated" : "1",
+        "XisUKFSAAllocActivated" : "1",
+        "XisUKFSACalcActivated" : "1",
+        "XisUKPRA108CalcActivated" : "1",
+        "XisUKPRAAllocActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "default",
+        "f001" : "UK_BANK",
+        "file" : null,
+        "partition" : null,
+        "startdate" : null
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_4335600057982832203",
+        "task" : "mpeSSMLECalc",
+        "dependencies" : [ "Job_25305066401995713" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 04:55:36",
+        "endDate" : "20.10.2023 05:13:06"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XSSM_ML_EVO_REFERENCE_DATE" : "",
+        "Xcluster" : "TRIODOS_UK",
+        "Xdescription" : "",
+        "XisSSMLEEVOAllocActivated" : "1",
+        "XisSSMLEEVOCalcActivated" : "1",
+        "XisSSMLEMLAllocActivated" : "1",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "f001" : "UK_BANK",
+        "file" : null,
+        "partition" : null,
+        "startdate" : null
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_2858386531969236965",
+        "task" : "mpeLCRC77",
+        "dependencies" : [ "Job_2170953208885961684" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 05:26:53",
+        "endDate" : "20.10.2023 05:30:02"
+      },
+      "parameters" : {
+        "XCSV_SEPARATOR_DECIMAL" : "0",
+        "XCSV_SEPARATOR_FIELDS" : "0",
+        "XCSV_SEPARATOR_GROUPING" : "0",
+        "XCSV_SEPARATOR_TEXT" : "0",
+        "XCSV_TEXT_MARKER" : "0",
+        "XDPM_VERSION" : "v3_0",
+        "Xcluster" : "TRIODOS_UK",
+        "Xdescription" : "",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "f001" : "UK_BANK",
+        "file" : null,
+        "partition" : null,
+        "startdate" : null
+      }
+    }
+  }, {
+    "type" : "ProcessExecution",
+    "expectedResult" : "SUCCESS",
+    "continueInCaseOfFailedTest" : false,
+    "process" : {
+      "modelVersionId" : "latest",
+      "description" : {
+        "id" : "Job_3504507753160572565",
+        "task" : "mpeNSFRCarryOverCA1",
+        "dependencies" : [ "Job_2858386531969236965" ],
+        "repdate" : "30.09.2022",
+        "cluster" : "TRIODOS_UK",
+        "f001" : "UK_BANK",
+        "startDate" : "20.10.2023 05:30:02",
+        "endDate" : "20.10.2023 05:33:36"
+      },
+      "parameters" : {
+        "XDAYS" : "0",
+        "Xcluster" : "TRIODOS_UK",
+        "Xsqlx.useTechnicalConfiguration" : "large",
+        "f001" : "UK_BANK",
+        "file" : null,
+        "partition" : null,
+        "startdate" : null
+      }
+    }
+  } ]
+}
